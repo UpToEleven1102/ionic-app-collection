@@ -4,7 +4,7 @@
       Todo
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only>
+      <button ion-button icon-only (click)="openAddTodoAlert()">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
@@ -13,13 +13,18 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item-sliding>
+    <ion-item-sliding *ngFor="let todo of todos">
       <ion-item>
-        <p>Item 1</p>
+        <p>{{todo}}</p>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="primary">
+        <button ion-button color="primary" (click)="removeTodoItem(todo)">
           <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+      <ion-item-options side="left">
+        <button ion-button color="secondary" (click)="archiveTodoItem(todo)">
+          <ion-icon name="archive"></ion-icon>
         </button>
       </ion-item-options>
     </ion-item-sliding>
