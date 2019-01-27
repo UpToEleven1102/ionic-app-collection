@@ -18,7 +18,7 @@ export class ArchivedTodosPage {
   private archives = []
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private todoService: TodoProvider) {
-    this.archives = todoService.getArchivedTodos()
+    this.archives = this.todoService.getArchivedTodos()
   }
 
   ionViewDidLoad() {
