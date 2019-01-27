@@ -1,17 +1,22 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
+import {TodoProvider} from "../../providers/todo/todo";
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
 })
 export class HomePage {
-
   todos = [];
   archived = [];
+  reorderEnable = false;
 
-  constructor(public navCtrl: NavController, private alertController: AlertController) {
+  constructor(public navCtrl: NavController, private todoService: TodoProvider,private alertController: AlertController) {
+    this.todos = todoService.getTodos();
+  }
 
+  toggleReorder() {
+    this.reorderEnable = !this.reorderEnable;
   }
 
   openAddTodoAlert() {
@@ -36,7 +41,7 @@ export class HomePage {
           text: 'Add',
           handler: data => {
             if (data.addTodoInput.length > 0) {
-              this.todos.push(data.addTodoInput)
+              this.todoService.addTodo(data.addTodoInput);
             }
           }
         },
@@ -44,17 +49,5 @@ export class HomePage {
     });
 
     addTodoAlert.present().then(res => console.log(res)). catch(err => console.log(err));
-  }
-
-  removeTodoItem(item) {
-    const idx = this.todos.indexOf(item)
-    this.todos.splice(idx, 1)
-  }
-
-  archiveTodoItem(item) {
-    this.archived.push(item);
-    this.removeTodoItem(item);
-
-    console.log('archived: ', this.archived)
   }
 }
