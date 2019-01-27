@@ -37,9 +37,12 @@ export class TodoProvider {
   archiveTodo(todo) {
     const idx = this.todos.indexOf(todo);
     if (idx >= 0) {
-      this.archives.push(todo);
-      this.todos.splice(idx, 1);
+      this.archives.push(this.todos.splice(idx, 1));
     }
+  }
+
+  removeArchive(idx) {
+    this.archives.splice(idx, 1);
   }
 
   reorderTodo(e) {
