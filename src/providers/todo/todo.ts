@@ -29,6 +29,10 @@ export class TodoProvider {
     this.todos.push(todo);
   }
 
+  editTodo(idx, todo) {
+    this.todos[idx]= todo
+  }
+
   removeTodo(todo) {
     const idx = this.todos.indexOf(todo);
     this.todos.splice(idx, 1);

@@ -42,6 +42,34 @@ export class HomePage {
     toast.present()
   }
 
+  editTodo(todo, idx) {
+    const editTodoAlert = this.alertController.create({
+      title: "Edit todo",
+      subTitle: todo,
+      inputs: [{
+        name: 'editTodoInput',
+        type: 'text',
+        placeholder: todo,
+      }],
+      buttons: [{
+        text: 'Cancel',
+      }, {
+        text: 'Edit',
+        handler: data => {
+          this.todoService.editTodo(idx, data.editTodoInput)
+          editTodoAlert.onDidDismiss(()=> {
+            const toast = this.toastCtrl.create({
+              message: 'Todo Edited',
+              duration: 2000,
+            })
+            toast.present()
+          })
+        }
+      }]
+    }, )
+    editTodoAlert.present()
+  }
+
   openAddTodoAlert() {
     const addTodoAlert = this.alertController.create({
       title: 'Add new Todo',
