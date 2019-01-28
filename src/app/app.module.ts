@@ -10,12 +10,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MusicProvider } from '../providers/music/music';
 import {HttpClientModule} from "@angular/common/http";
+import {SocialSharing} from "@ionic-native/social-sharing/ngx";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +33,8 @@ import {HttpClientModule} from "@angular/common/http";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MusicProvider
+    MusicProvider,
+    SocialSharing,
   ]
 })
 export class AppModule {}

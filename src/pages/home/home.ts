@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {NavController, LoadingController, Loading, Refresher, ActionSheetController} from 'ionic-angular';
 import {MusicProvider} from "../../providers/music/music";
+import {SocialSharing} from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'page-home',
@@ -9,8 +10,11 @@ import {MusicProvider} from "../../providers/music/music";
 export class HomePage {
   allMusic
 
-  constructor(public navCtrl: NavController, private musicService: MusicProvider, private loadingCtrl: LoadingController, private actionSheetCtrl: ActionSheetController) {
-
+  constructor(public navCtrl: NavController,
+              private musicService: MusicProvider,
+              private loadingCtrl: LoadingController,
+              private actionSheetCtrl: ActionSheetController,
+              private socialSharing: SocialSharing) {
   }
 
   getMusic(e: Refresher, loadingModal: Loading) {
@@ -25,18 +29,19 @@ export class HomePage {
     })
   }
 
-  shareMusic() {
+  shareMusic(music) {
     const actionSheet = this.actionSheetCtrl.create({
       title: "Share",
       buttons: [{
         text: 'Facebook',
         icon: 'logo-facebook',
-        handler: () => {}
-      },{
+        handler: () => {this.socialSharing.shareViaFacebook(music.name, music.image, music.music_url)}
+
+      }, {
         text: 'Twitter',
         icon: 'logo-twitter',
-        handler: () => {}
-      },{
+        handler: () => {this.socialSharing.shareViaTwitter(music.name, music.image, music.music_url)}
+      }, {
         text: 'Share',
         icon: 'share'
       }]
@@ -45,7 +50,7 @@ export class HomePage {
     actionSheet.present()
   }
 
-  ionViewDidLoad(){
+  ionViewDidLoad() {
     const loadingModal = this.loadingCtrl.create({content: "Getting Music"})
 
     loadingModal.present()
