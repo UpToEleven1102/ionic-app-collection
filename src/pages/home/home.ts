@@ -7,10 +7,15 @@ import {MusicProvider} from "../../providers/music/music";
   templateUrl: 'home.html'
 })
 export class HomePage {
-  music = []
+  allMusic
 
   constructor(public navCtrl: NavController, private musicService: MusicProvider) {
-    this.musicService.getMusic().subscribe({next: value => this.music.push(value), error: err => console.warn(err)})
+
   }
 
+  ionViewDidLoad(){
+    this.musicService.getMusic().then(music => {
+      this.allMusic = music
+    })
+  }
 }

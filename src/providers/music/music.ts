@@ -16,6 +16,10 @@ export class MusicProvider {
   }
 
   getMusic() {
-    return this.http.get(apiUrl)
+    return new Promise(resolve => {
+      this.http.get(apiUrl).subscribe(data => {
+        resolve(data)
+      }, err => console.log(err))
+    })
   }
 }
