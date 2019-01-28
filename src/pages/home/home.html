@@ -8,7 +8,22 @@
 </ion-header>
 
 <ion-content padding>
-  <p>
-    {{allMusic}}
-  </p>
+  <ion-card *ngFor="let music of allMusic">
+    <ion-card-header>
+      <img [src]="music.image" />
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-title>
+        {{music.name}}
+      </ion-card-title>
+      <ion-item>
+        <button ion-button item-left icon-only>
+          <ion-icon name="share"></ion-icon>
+        </button>
+        <button ion-button item-right icon-only>
+          <ion-icon name="play"></ion-icon>
+        </button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
