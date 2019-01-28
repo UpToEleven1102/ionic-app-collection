@@ -12,9 +12,9 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-card *ngFor="let music of allMusic">
+  <ion-card *ngFor="let music of allMusic; let idx = index">
     <ion-card-header>
-      <img [src]="music.image" />
+      <img [src]="music.image"/>
     </ion-card-header>
     <ion-card-content>
       <ion-card-title>
@@ -22,7 +22,13 @@
       </ion-card-title>
       <ion-item>
         <button ion-button item-left icon-only (click)="shareMusic(music)">
-          <ion-icon name="share" ></ion-icon>
+          <ion-icon name="share"></ion-icon>
+        </button>
+        <button ion-button icon-only *ngIf="favoriteService.isFavorite(music)" (click)="favoriteService.removeFavorite(music)">
+          <ion-icon name="heart-dislike"></ion-icon>
+        </button>
+        <button ion-button icon-only *ngIf="!favoriteService.isFavorite(music)" (click)="favoriteService.addFavorite(music)">
+          <ion-icon name="heart"></ion-icon>
         </button>
         <button ion-button item-right icon-only (click)="playMusic(music)">
           <ion-icon name="play"></ion-icon>

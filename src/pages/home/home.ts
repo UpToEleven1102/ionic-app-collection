@@ -4,6 +4,7 @@ import {SocialSharing} from '@ionic-native/social-sharing/ngx';
 
 import {MusicProvider} from "../../providers/music/music";
 import {MusicPlayerPage} from "../music-player/music-player";
+import {FavoriteProvider} from "../../providers/favorite/favorite";
 
 @Component({
   selector: 'page-home',
@@ -14,6 +15,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,
               private musicService: MusicProvider,
+              private favoriteService: FavoriteProvider,
               private loadingCtrl: LoadingController,
               private actionSheetCtrl: ActionSheetController,
               private socialSharing: SocialSharing) {

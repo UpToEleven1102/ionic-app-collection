@@ -14,4 +14,22 @@
 
 
 <ion-content padding>
+  <ion-card *ngIf="music">
+    <img [src]="music.image"/>
+    <ion-card-content>
+      <ion-row>
+        <ion-buttons>
+          <button ion-button icon-only>
+            <ion-icon name="stop"></ion-icon>
+          </button>
+          <button ion-button icon-only>
+            <ion-icon name="start"></ion-icon>
+          </button>
+          <button ion-button icon-only>
+            <ion-icon name="pause"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

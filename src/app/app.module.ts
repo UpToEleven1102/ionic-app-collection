@@ -6,12 +6,14 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import {MusicPlayerPage} from "../pages/music-player/music-player";
+import {FavoritePage} from "../pages/favorite/favorite";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MusicProvider } from '../providers/music/music';
 import {HttpClientModule} from "@angular/common/http";
 import {SocialSharing} from "@ionic-native/social-sharing/ngx";
+import { FavoriteProvider } from '../providers/favorite/favorite';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import {SocialSharing} from "@ionic-native/social-sharing/ngx";
     HomePage,
     ListPage,
     MusicPlayerPage,
+    FavoritePage,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +34,7 @@ import {SocialSharing} from "@ionic-native/social-sharing/ngx";
     HomePage,
     ListPage,
     MusicPlayerPage,
+    FavoritePage,
   ],
   providers: [
     StatusBar,
@@ -38,6 +42,7 @@ import {SocialSharing} from "@ionic-native/social-sharing/ngx";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MusicProvider,
     SocialSharing,
+    FavoriteProvider,
   ]
 })
 export class AppModule {}
