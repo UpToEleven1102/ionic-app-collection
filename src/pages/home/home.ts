@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NavController, LoadingController, Loading, Refresher} from 'ionic-angular';
+import {NavController, LoadingController, Loading, Refresher, ActionSheetController} from 'ionic-angular';
 import {MusicProvider} from "../../providers/music/music";
 
 @Component({
@@ -9,7 +9,7 @@ import {MusicProvider} from "../../providers/music/music";
 export class HomePage {
   allMusic
 
-  constructor(public navCtrl: NavController, private musicService: MusicProvider, private loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, private musicService: MusicProvider, private loadingCtrl: LoadingController, private actionSheetCtrl: ActionSheetController) {
 
   }
 
@@ -23,6 +23,26 @@ export class HomePage {
         e.complete()
       }
     })
+  }
+
+  shareMusic() {
+    const actionSheet = this.actionSheetCtrl.create({
+      title: "Share",
+      buttons: [{
+        text: 'Facebook',
+        icon: 'logo-facebook',
+        handler: () => {}
+      },{
+        text: 'Twitter',
+        icon: 'logo-twitter',
+        handler: () => {}
+      },{
+        text: 'Share',
+        icon: 'share'
+      }]
+    })
+
+    actionSheet.present()
   }
 
   ionViewDidLoad(){
