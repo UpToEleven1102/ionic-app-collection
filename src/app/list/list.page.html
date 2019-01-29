@@ -13,6 +13,13 @@
   <ion-list>
     <app-item *ngFor="let item of items" [item]="item"></app-item>
   </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="start">
+    <ion-fab-button>Payers</ion-fab-button>
+    <ion-fab-list side="top">
+        <app-payer *ngFor="let payer of payers" [payer]="payer"></app-payer>
+    </ion-fab-list>
+  </ion-fab>
   <!--
     <div *ngIf="selectedItem" padding>
       You navigated here from <b>{{selectedItem.title }}</b>
