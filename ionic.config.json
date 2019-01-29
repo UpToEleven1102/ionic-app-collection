@@ -1,5 +1,7 @@
 {
   "name": "angular-skyhook-ex",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

@@ -2,7 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
     selector: 'app-square',
-    templateUrl: './square.component.html',
+    template: `<div [ngStyle]="getStyle()">
+        <ng-content></ng-content>
+    </div>`,
     styleUrls: ['./square.component.scss']
 })
 export class SquareComponent implements OnInit {

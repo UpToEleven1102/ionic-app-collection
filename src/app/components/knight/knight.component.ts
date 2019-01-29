@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
+import {SkyhookDndService} from '@angular-skyhook/core';
+
+import {ItemTypes} from '../../constants';
 
 @Component({
-  selector: 'app-knight',
-  templateUrl: './knight.component.html',
-  styleUrls: ['./knight.component.scss']
+    selector: 'app-knight',
+    template: `<span [dragSource]="knightSource" [class.dragging]="isDragging$|async">♘</span>`,
+    styleUrls: ['./knight.component.scss']
 })
-export class KnightComponent implements OnInit {
+export class KnightComponent implements OnDestroy {
+    knightSource = this.dnd.dragSource(ItemTypes.KNIGHT, {
+        beginDrag: () => ({})
+    });
 
-  constructor() { }
+    isDragging$ = this.knightSource.listen(monitor => monitor.isDragging())
 
-  ngOnInit() {
-  }
+    constructor(private dnd: SkyhookDndService) {
+    }
+
+    ngOnDestroy() {
+        this.knightSource.unsubscribe();
+    }
 
 }

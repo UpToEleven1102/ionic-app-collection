@@ -24,8 +24,9 @@ export class BoardComponent implements OnInit {
     }
 
     handleSquareClick(pos: Coord) {
-        if (this.gameService.canMoveKnight(pos))
+        if (this.gameService.canMoveKnight(pos)) {
             this.gameService.moveKnight(pos);
+        }
     }
 
     constructor(private gameService: GameService) {
