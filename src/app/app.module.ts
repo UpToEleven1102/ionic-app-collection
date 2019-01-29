@@ -10,6 +10,7 @@ import {SkyhookDndModule} from '@angular-skyhook/core';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
+import {GameService} from './services/game.service';
 
 @NgModule({
     declarations: [AppComponent],
@@ -18,7 +19,8 @@ import {AppRoutingModule} from './app-routing.module';
     providers: [
         StatusBar,
         SplashScreen,
-        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
+        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+        GameService,
     ],
     bootstrap: [AppComponent]
 })

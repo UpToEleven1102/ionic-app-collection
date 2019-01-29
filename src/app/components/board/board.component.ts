@@ -1,9 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-
-interface Coord {
-    x: number;
-    y: number;
-}
+import {GameService} from '../../services/game.service';
+import {Coord} from '../../coord';
 
 @Component({
     selector: 'app-board',
@@ -11,6 +8,8 @@ interface Coord {
     styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
+    knightPosition;
+
     sixtyFour = new Array(64).fill(0).map((_, i) => i);
 
     xy(i): Coord {
@@ -24,8 +23,13 @@ export class BoardComponent implements OnInit {
         return (x + y) % 2 === 1;
     }
 
-    constructor() {
+    handleSquareClick(pos: Coord) {
+        if (this.gameService.canMoveKnight(pos))
+            this.gameService.moveKnight(pos);
+    }
 
+    constructor(private gameService: GameService) {
+        this.knightPosition = this.gameService.knightPosition$;
     }
 
     ngOnInit() {
